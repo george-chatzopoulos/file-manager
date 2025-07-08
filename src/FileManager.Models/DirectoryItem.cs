@@ -35,12 +35,12 @@ public sealed class DirectoryItem : IDisposable
         return isNameNotEmpty && hasNameValidPattern;
     }
 
-    public FileItem? GetFileItem(string name)
+    public FileItem? GetFile(string name)
     {
         return Files.TryGetValue(name, out var file) ? file : null;
     }
 
-    public void AddOrUpdateFileItem(string name, FileItem file)
+    public void AddOrUpdateFile(string name, FileItem file)
     {
         if (Files.ContainsKey(name))
         {

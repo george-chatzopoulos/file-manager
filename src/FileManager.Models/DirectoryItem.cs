@@ -10,10 +10,10 @@ public sealed class DirectoryItem : IDisposable
     public string Name { get; set; }
     private Dictionary<string, FileItem> _files = new Dictionary<string, FileItem>();
 
-    public DirectoryItem(string name, Dictionary<string, FileItem>? files = null)
+    public DirectoryItem(string name, Dictionary<string, FileItem> files)
     {
         SetName(name);
-        _files = files ?? new Dictionary<string, FileItem>();
+        _files = new Dictionary<string, FileItem>(files ?? []);
     }
 
     public void SetName(string name)

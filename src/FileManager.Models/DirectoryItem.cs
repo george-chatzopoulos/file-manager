@@ -70,7 +70,7 @@ public sealed class DirectoryItem : IDisposable
 
     public void Empty()
     {
-        Files = null;
+        Files = [];
     }
 
 
@@ -82,7 +82,7 @@ public sealed class DirectoryItem : IDisposable
             {
                 file?.Dispose();
             }
-            Files = null;
+            Files = [];
         }
     }
 }

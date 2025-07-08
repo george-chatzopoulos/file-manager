@@ -40,14 +40,16 @@ public sealed class DirectoryItem : IDisposable
         return Files.TryGetValue(name, out var file) ? file : null;
     }
 
-    public void UpdateFileItem(string name, FileItem file)
+    public void AddOrUpdateFileItem(string name, FileItem file)
     {
-        Files[name] = file;
-    }
-
-    public void AddFile(FileItem file)
-    {
-        Files.Add(file.Name, file);
+        if (Files.ContainsKey(name))
+        {
+            Files[name] = file;
+        }
+        else
+        {
+            Files.Add(file.Name, file);
+        }
     }
 
     public bool RemoveFile(string name)

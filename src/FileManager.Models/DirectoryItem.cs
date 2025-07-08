@@ -8,7 +8,7 @@ using System.Linq;
 public sealed class DirectoryItem : IDisposable
 {
     public string Name { get; set; }
-    private Dictionary<string, FileItem>? Files;
+    private Dictionary<string, FileItem> Files = new Dictionary<string, FileItem>();
 
     public DirectoryItem(string name, Dictionary<string, FileItem>? files = null)
     {
@@ -37,19 +37,16 @@ public sealed class DirectoryItem : IDisposable
 
     public FileItem? GetFileItem(string name)
     {
-        Files ??= new Dictionary<string, FileItem>();
         return Files.TryGetValue(name, out var file) ? file : null;
     }
 
     public void UpdateFileItem(string name, FileItem file)
     {
-        Files ??= new Dictionary<string, FileItem>();
         Files[name] = file;
     }
 
     public void AddFile(FileItem file)
     {
-        Files ??= new Dictionary<string, FileItem>();
         Files.Add(file.Name, file);
     }
 

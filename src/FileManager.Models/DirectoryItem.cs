@@ -8,12 +8,12 @@ using System.Linq;
 public sealed class DirectoryItem : IDisposable
 {
     public string Name { get; set; }
-    private Dictionary<string, FileItem> Files = new Dictionary<string, FileItem>();
+    private Dictionary<string, FileItem> _files = new Dictionary<string, FileItem>();
 
     public DirectoryItem(string name, Dictionary<string, FileItem>? files = null)
     {
         SetName(name);
-        Files = files ?? new Dictionary<string, FileItem>();
+        _files = files ?? new Dictionary<string, FileItem>();
     }
 
     public void SetName(string name)
@@ -37,52 +37,52 @@ public sealed class DirectoryItem : IDisposable
 
     public FileItem? GetFile(string name)
     {
-        return Files.TryGetValue(name, out var file) ? file : null;
+        return _files.TryGetValue(name, out var file) ? file : null;
     }
 
     public void AddOrUpdateFile(string name, FileItem file)
     {
-        if (Files.ContainsKey(name))
+        if (_files.ContainsKey(name))
         {
-            Files[name] = file;
+            _files[name] = file;
         }
         else
         {
-            Files.Add(file.Name, file);
+            _files.Add(file.Name, file);
         }
     }
 
     public bool RemoveFile(string name)
     {
-        return Files?.Remove(name) ?? false;
+        return _files?.Remove(name) ?? false;
     }
 
     public bool ContainsFile(string name)
     {
-        return Files?.ContainsKey(name) ?? false;
+        return _files?.ContainsKey(name) ?? false;
     }
 
     public IEnumerable<FileItem> GetAllFIles()
     {
-        return Files?.Values ?? Enumerable.Empty<FileItem>();
+        return _files?.Values ?? Enumerable.Empty<FileItem>();
     }
 
 
     public void Empty()
     {
-        Files = [];
+        _files = [];
     }
 
 
     public void Dispose()
     {
-        if (Files != null)
+        if (_files != null)
         {
-            foreach (var file in Files.Values)
+            foreach (var file in _files.Values)
             {
                 file?.Dispose();
             }
-            Files = [];
+            _files = [];
         }
     }
 }

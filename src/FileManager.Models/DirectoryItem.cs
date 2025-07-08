@@ -42,14 +42,7 @@ public sealed class DirectoryItem : IDisposable
 
     public void AddOrUpdateFile(string name, FileItem file)
     {
-        if (_files.ContainsKey(name))
-        {
-            _files[name] = file;
-        }
-        else
-        {
-            _files.Add(file.Name, file);
-        }
+        _files[name] = file;
     }
 
     public bool RemoveFile(string name)

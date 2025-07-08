@@ -63,7 +63,7 @@ public sealed class DirectoryItem : IDisposable
 
     public void Clear()
     {
-        _files = [];
+        _files.Clear();
     }
 
 

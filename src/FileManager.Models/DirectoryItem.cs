@@ -8,7 +8,7 @@ using System.Linq;
 public sealed class DirectoryItem : IDisposable
 {
     public string Name { get; set; }
-    private Dictionary<string, FileItem> _files = new Dictionary<string, FileItem>();
+    private Dictionary<string, FileItem> _files = [];
 
     public DirectoryItem(string name, Dictionary<string, FileItem> files)
     {

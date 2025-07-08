@@ -61,7 +61,7 @@ public sealed class DirectoryItem : IDisposable
     }
 
 
-    public void Empty()
+    public void Clear()
     {
         _files = [];
     }

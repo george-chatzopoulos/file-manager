@@ -7,10 +7,10 @@ using System.Linq;
 
 public sealed class DirectoryItem : IDisposable
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
     private Dictionary<string, FileItem> _files = [];
 
-    public DirectoryItem(string name, Dictionary<string, FileItem> files)
+    public DirectoryItem(string name, Dictionary<string, FileItem>? files = null)
     {
         SetName(name);
         _files = new Dictionary<string, FileItem>(files ?? []);
@@ -20,8 +20,6 @@ public sealed class DirectoryItem : IDisposable
     {
         if (!IsNameValid(name))
             throw new ArgumentException("Invalid directory name", nameof(name));
-        if (ContainsFile(name))
-            throw new ArgumentException("File already exists", nameof(name));
 
         Name = name;
     }

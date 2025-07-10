@@ -55,7 +55,7 @@ public sealed class DirectoryItem : IDisposable
         return _files?.ContainsKey(name) ?? false;
     }
 
-    public IEnumerable<FileItem> GetAllFIles()
+    public IEnumerable<FileItem> GetAllFiles()
     {
         return _files?.Values ?? Enumerable.Empty<FileItem>();
     }

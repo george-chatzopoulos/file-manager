@@ -5,6 +5,7 @@
     <ProjectReference Include="..\FileManager.Data\FileManager.Data.csproj" />
     <ProjectReference Include="..\FileManager.Models\FileManager.Models.csproj" />
     <ProjectReference Include="..\FileManager.Services\FileManager.Services.csproj" />
+    <ProjectReference Include="..\FileManager.Common\FileManager.Common.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,8 +1,9 @@
 namespace FileManager.Models;
 
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+
+using FileManager.Common;
 
 
 public sealed class DirectoryItem : IDisposable
@@ -18,19 +19,10 @@ public sealed class DirectoryItem : IDisposable
 
     public void SetName(string name)
     {
-        if (!IsNameValid(name))
+        if (!Models.IsDirectoryNameValid(name))
             throw new ArgumentException("Invalid directory name", nameof(name));
 
         Name = name;
-    }
-
-    private bool IsNameValid(string name)
-    {
-        bool isNameNotEmpty = !string.IsNullOrWhiteSpace(name);
-        string pattern = @"[a-zA-Z][a-zA-Z0-9-_\.]*$";
-        bool hasNameValidPattern = Regex.IsMatch(name, pattern, RegexOptions.IgnoreCase);
-
-        return isNameNotEmpty && hasNameValidPattern;
     }
 
     public FileItem? GetFile(string name)

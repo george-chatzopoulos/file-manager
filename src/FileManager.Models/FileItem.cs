@@ -1,7 +1,6 @@
 ﻿namespace FileManager.Models;
 
-using System.Text.RegularExpressions;
-
+using FileManager.Common;
 
 public sealed class FileItem : IDisposable
 {
@@ -18,22 +17,13 @@ public sealed class FileItem : IDisposable
 
   public void SetName(string name)
   {
-    if (!IsNameValid(name))
+    if (!Models.IsFileNameValid(name))
       throw new ArgumentException("Invalid file name", nameof(name));
 
     Name = name;
     Extension = Path.GetExtension(name);
   }
 
-
-  private bool IsNameValid(string name)
-  {
-    bool isNameNotEmpty = !string.IsNullOrWhiteSpace(name);
-    string pattern = @"^[\w\s-]+(\.[\w\.]+[\w]+)$";
-    bool hasNameValidPattern = Regex.IsMatch(name, pattern, RegexOptions.IgnoreCase);
-
-    return isNameNotEmpty && hasNameValidPattern;
-  }
 
   public void Dispose()
   {

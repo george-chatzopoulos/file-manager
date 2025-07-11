@@ -2,13 +2,18 @@
 
 namespace FileManager.Common;
 
-public static class Models
+public static partial class Models
 {
+    [GeneratedRegex(@"[a-zA-Z][a-zA-Z0-9-_\.]*$", RegexOptions.IgnoreCase)]
+    private static partial Regex DirectoryNamePattern();
+
+    [GeneratedRegex(@"^[\w\s-]+(\.[\w\.]+[\w]+)$", RegexOptions.IgnoreCase)]
+    private static partial Regex FileNamePattern();
+
     public static bool IsDirectoryNameValid(string name)
     {
         bool isNameNotEmpty = !string.IsNullOrWhiteSpace(name);
-        string pattern = @"[a-zA-Z][a-zA-Z0-9-_\.]*$";
-        bool hasNameValidPattern = Regex.IsMatch(name, pattern, RegexOptions.IgnoreCase);
+        bool hasNameValidPattern = DirectoryNamePattern().IsMatch(name);
 
         return isNameNotEmpty && hasNameValidPattern;
     }
@@ -16,8 +21,7 @@ public static class Models
     public static bool IsFileNameValid(string name)
     {
         bool isNameNotEmpty = !string.IsNullOrWhiteSpace(name);
-        string pattern = @"^[\w\s-]+(\.[\w\.]+[\w]+)$";
-        bool hasNameValidPattern = Regex.IsMatch(name, pattern, RegexOptions.IgnoreCase);
+        bool hasNameValidPattern = FileNamePattern().IsMatch(name);
 
         return isNameNotEmpty && hasNameValidPattern;
     }

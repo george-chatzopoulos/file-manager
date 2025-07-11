@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 
 public sealed class FileItem : IDisposable
 {
-  public string Name { get; set; }
-  public string Extension { get; private set; }
+  public required string Name { get; set; }
+  public required string Extension { get; set; }
   public Stream Content { get; set; }
   public long Size => Content?.Length ?? 0;
 

@@ -4,8 +4,8 @@ using FileManager.Common;
 
 public sealed class FileItem : IDisposable
 {
-  public required string Name { get; set; }
-  public required string Extension { get; set; }
+  public string Name { get; set; } = string.Empty;
+  public string Extension { get; set; } = string.Empty;
   public Stream Content { get; set; }
   public long Size => Content?.Length ?? 0;
 

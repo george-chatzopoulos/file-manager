@@ -30,9 +30,9 @@ public sealed class DirectoryItem : IDisposable
         return _files.TryGetValue(name, out var file) ? file : null;
     }
 
-    public void AddOrUpdateFile(string name, FileItem file)
+    public void AddOrUpdateFile(FileItem file)
     {
-        _files[name] = file;
+        _files[file.Name] = file;
     }
 
     public bool RemoveFile(string name)

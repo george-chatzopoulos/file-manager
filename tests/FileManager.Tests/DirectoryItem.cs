@@ -51,7 +51,7 @@ public class DirectoryItemTests : IDisposable
     }
 
     [Fact]
-    public void GetFIle_FileExists_ReturnsFile()
+    public void GetFile_FileExists_ReturnsFile()
     {
         Assert.NotNull(_testFiles.GetFile("a.txt"));
     }
@@ -75,5 +75,34 @@ public class DirectoryItemTests : IDisposable
         var newA  = new FileItem("a.txt", new MemoryStream(Encoding.UTF8.GetBytes("New a")));
         _testFiles.AddOrUpdateFile(newA);
         Assert.NotEqual(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
+    }
+
+    [Fact]
+    public void RemoveFile_Succeeds_ReturnsTrue()
+    {
+        bool result = _testFiles.RemoveFile("a.txt");
+        Assert.Null(_testFiles.GetFile("a.txt"));
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void RemoveFile_Fails_ReturnsFalse()
+    {
+        bool result = _testFiles.RemoveFile("non_existent_file.txt");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ContainsFile_FileExists_ReturnsTrue()
+    {
+        bool result = _testFiles.ContainsFile("a.txt");
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void ContainsFile_FileDoesNotExist_ReturnsFalse()
+    {
+        bool result = _testFiles.ContainsFile("non_existent_file.txt");
+        Assert.False(result);
     }
 }

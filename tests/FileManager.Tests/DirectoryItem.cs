@@ -105,4 +105,14 @@ public class DirectoryItemTests : IDisposable
         bool result = _testFiles.ContainsFile("non_existent_file.txt");
         Assert.False(result);
     }
+
+    [Theory]
+    [InlineData("a.txt")]
+    [InlineData("b.txt")]
+    [InlineData("c.txt")]
+    public void GetAllFiles_ReturnsAllFiles(string name)
+    {
+        var files = _testFiles.GetAllFiles();
+        Assert.Contains(files, f => f.Name == name);
+    }
 }

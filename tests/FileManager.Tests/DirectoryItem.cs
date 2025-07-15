@@ -115,4 +115,11 @@ public class DirectoryItemTests : IDisposable
         var files = _testFiles.GetAllFiles();
         Assert.Contains(files, f => f.Name == name);
     }
+
+    [Fact]
+    public void Clear_DeletesAllFiles()
+    {
+        _testFiles.Clear();
+        Assert.Equal(_testFiles.GetAllFiles(), []);
+    }
 }

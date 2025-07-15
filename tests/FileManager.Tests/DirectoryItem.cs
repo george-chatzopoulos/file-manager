@@ -55,4 +55,25 @@ public class DirectoryItemTests : IDisposable
     {
         Assert.NotNull(_testFiles.GetFile("a.txt"));
     }
+
+    [Fact]
+    public void AddOrUpdateFile_AddsFile()
+    {
+        var test = new FileItem("test.txt");
+        Assert.Null(_testFiles.GetFile("test.txt"));
+
+        _testFiles.AddOrUpdateFile(test);
+        Assert.Equal(test, _testFiles.GetFile("test.txt"));
+    }
+
+    [Fact]
+    public void AddOrUpdateFile_UpdatesFile()
+    {
+        var copy = _testFiles.GetFile("a.txt");
+        Assert.Equal(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
+
+        var newA  = new FileItem("a.txt", new MemoryStream(Encoding.UTF8.GetBytes("New a")));
+        _testFiles.AddOrUpdateFile(newA);
+        Assert.NotEqual(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
+    }
 }

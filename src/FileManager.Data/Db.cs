@@ -6,6 +6,6 @@ public class Db
 {
     public class FileManagerDbContext : DbContext
     {
-        
+
     }
 }

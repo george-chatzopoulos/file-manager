@@ -31,9 +31,9 @@ public static partial class Models
 
     public static bool IsPathValid(string path)
     {
-        bool isPathEmpty = string.IsNullOrWhiteSpace(path);
+        bool isRoot = path.Equals("/");
         bool hasPathValidPattern = IsPathValid().IsMatch(path);
 
-        return isPathEmpty || hasPathValidPattern;
+        return isRoot || hasPathValidPattern;
     }
 }

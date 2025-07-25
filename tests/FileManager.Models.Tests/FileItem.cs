@@ -1,8 +1,5 @@
 ﻿namespace FileManager.Models.Tests;
 
-using System.IO;
-using System.Text;
-
 using FileManager.Models;
 
 using Xunit;

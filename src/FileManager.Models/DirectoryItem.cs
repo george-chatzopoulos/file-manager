@@ -6,7 +6,7 @@ using System.Linq;
 using FileManager.Common;
 
 
-public sealed class DirectoryItem : IDisposable
+public sealed class DirectoryItem
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
@@ -55,18 +55,5 @@ public sealed class DirectoryItem : IDisposable
     public void Clear()
     {
         _files.Clear();
-    }
-
-
-    public void Dispose()
-    {
-        if (_files != null)
-        {
-            foreach (var file in _files.Values)
-            {
-                file?.Dispose();
-            }
-            _files = [];
-        }
     }
 }

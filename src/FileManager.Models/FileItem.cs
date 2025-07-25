@@ -2,17 +2,21 @@
 
 using FileManager.Common;
 
-public sealed class FileItem : IDisposable
+public sealed class FileItem
 {
+    public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
-    public Stream Content { get; set; }
-    public long Size => Content?.Length ?? 0;
+    public string Path {  get; set; } = string.Empty;
+    public long Size {  get; set; } = 0;
+    public int? CurrentDirectoryId { get; set; }
+    
 
-    public FileItem(string name, Stream? content = null)
+    public FileItem(string name, string path = "", int? currentDirectoryId = null)
     {
         SetName(name);
-        Content = content ?? Stream.Null;
+        SetPath(path);
+        CurrentDirectoryId = currentDirectoryId;
     }
 
     public void SetName(string name)
@@ -21,12 +25,13 @@ public sealed class FileItem : IDisposable
             throw new ArgumentException("Invalid file name", nameof(name));
 
         Name = name;
-        Extension = Path.GetExtension(name);
+        Extension = System.IO.Path.GetExtension(name);
     }
 
-
-    public void Dispose()
+    public void SetPath(string path)
     {
-        Content?.Dispose();
+        if (!Models.IsPathValid(path))
+            throw new ArgumentException("Invalid path", nameof(path));
+        Path = path + "/" + Name + Extension;
     }
 }

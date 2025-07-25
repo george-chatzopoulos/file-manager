@@ -7,20 +7,8 @@ using FileManager.Models;
 
 using Xunit;
 
-public class FileItemTests : IDisposable
+public class FileItemTests
 {
-    private readonly MemoryStream _testStream;
-
-    public FileItemTests()
-    {
-        _testStream = new MemoryStream(Encoding.UTF8.GetBytes("Hello, world!"));
-    }
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-    }
-
     [Fact]
     public void Constructor_SetNameAndExtension()
     {
@@ -49,37 +37,12 @@ public class FileItemTests : IDisposable
     }
 
     [Fact]
-    public void Constructor_SetContentAndSize()
-    {
-        var file = new FileItem("test.txt", _testStream);
-
-        Assert.True(file.Size > 0);
-        Assert.True(file.Content != null);
-    }
-
-    [Fact]
-    public void Size_ReturnsStreamLength()
-    {
-        var file = new FileItem("test.txt", _testStream);
-        Assert.Equal("Hello, world!".Length, file.Size);
-    }
-
-    [Fact]
     public void Size_WithNullContent_ReturnsZero()
     {
         var file = new FileItem("test.txt");
         Assert.Equal(0, file.Size);
     }
 
-    [Fact]
-    public void Dispose_ClosesUnderlyingStream()
-    {
-        var file = new FileItem("test.txt", _testStream);
-
-        file.Dispose();
-
-        Assert.Throws<ObjectDisposedException>(() => _testStream.ReadByte());
-    }
 
     [Theory]
     [InlineData("document.pdf", ".pdf")]

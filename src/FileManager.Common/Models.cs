@@ -29,11 +29,15 @@ public static partial class Models
         return isNameNotEmpty && hasNameValidPattern;
     }
 
+    public static bool IsPathRoot(string path)
+    {
+        return path.Equals("/");
+    }
+
     public static bool IsPathValid(string path)
     {
-        bool isRoot = path.Equals("/");
         bool hasPathValidPattern = IsPathValid().IsMatch(path);
 
-        return isRoot || hasPathValidPattern;
+        return IsPathRoot(path) || hasPathValidPattern;
     }
 }

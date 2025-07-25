@@ -1,4 +1,4 @@
-﻿namespace FileManager.Tests;
+﻿namespace FileManager.Models.Tests;
 
 using System.IO;
 using System.Text;

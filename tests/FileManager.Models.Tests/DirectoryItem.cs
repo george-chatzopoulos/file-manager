@@ -1,4 +1,4 @@
-namespace FileManager.Tests;
+namespace FileManager.Models.Tests;
 
 using System.IO;
 using System.Text;
@@ -10,9 +10,9 @@ using Xunit;
 public class DirectoryItemTests : IDisposable
 {
     private readonly DirectoryItem _testFiles = new("test");
-    private readonly FileItem _a = new("a.txt", new MemoryStream(Encoding.UTF8.GetBytes("a")));
-    private readonly FileItem _b = new("b.txt", new MemoryStream(Encoding.UTF8.GetBytes("b")));
-    private readonly FileItem _c = new("c.txt", new MemoryStream(Encoding.UTF8.GetBytes("c")));
+    private readonly FileItem _a = new("a.txt");
+    private readonly FileItem _b = new("b.txt");
+    private readonly FileItem _c = new("c.txt");
 
     public DirectoryItemTests()
     {
@@ -62,17 +62,6 @@ public class DirectoryItemTests : IDisposable
 
         _testFiles.AddOrUpdateFile(test);
         Assert.Equal(test, _testFiles.GetFile("test.txt"));
-    }
-
-    [Fact]
-    public void AddOrUpdateFile_UpdatesFile()
-    {
-        var copy = _testFiles.GetFile("a.txt");
-        Assert.Equal(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
-
-        var newA = new FileItem("a.txt", new MemoryStream(Encoding.UTF8.GetBytes("New a")));
-        _testFiles.AddOrUpdateFile(newA);
-        Assert.NotEqual(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
     }
 
     [Fact]

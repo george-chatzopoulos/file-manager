@@ -8,6 +8,7 @@ using FileManager.Common;
 
 public sealed class DirectoryItem : IDisposable
 {
+    public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     private Dictionary<string, FileItem> _files = [];
 

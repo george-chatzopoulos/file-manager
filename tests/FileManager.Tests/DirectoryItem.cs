@@ -1,11 +1,9 @@
 namespace FileManager.Tests;
 
-using FileManager.Models;
-
-using Newtonsoft.Json.Bson;
-
 using System.IO;
 using System.Text;
+
+using FileManager.Models;
 
 using Xunit;
 
@@ -72,7 +70,7 @@ public class DirectoryItemTests : IDisposable
         var copy = _testFiles.GetFile("a.txt");
         Assert.Equal(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
 
-        var newA  = new FileItem("a.txt", new MemoryStream(Encoding.UTF8.GetBytes("New a")));
+        var newA = new FileItem("a.txt", new MemoryStream(Encoding.UTF8.GetBytes("New a")));
         _testFiles.AddOrUpdateFile(newA);
         Assert.NotEqual(copy?.Content, _testFiles.GetFile("a.txt")?.Content);
     }

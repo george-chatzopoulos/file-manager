@@ -40,6 +40,22 @@ public class FileItemTests
         Assert.Equal(0, file.Size);
     }
 
+    [Fact]
+    public void Constructor_SetPath_ThrowsArgumentException()
+    {
+        Assert.Throws<ArgumentException>(() => new FileItem("test.txt", "home/"));
+        Assert.Throws<ArgumentException>(() => new FileItem("test.txt", "/home"));
+    }
+
+    [Theory]
+    [InlineData("/", "/test.txt")]
+    [InlineData("/home/", "/home/test.txt")]
+    [InlineData("/home/desktop123/", "/home/desktop123/test.txt")]
+    public void Path_ParsesCorrectly(string path, string expectedRes)
+    {
+        var file = new FileItem("test.txt", path);
+        Assert.Equal(expectedRes, file.Path);
+    }
 
     [Theory]
     [InlineData("document.pdf", ".pdf")]

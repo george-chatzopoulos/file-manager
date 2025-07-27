@@ -5,9 +5,9 @@ using FileManager.Common;
 public sealed class FileItem
 {
     public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; private set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
-    public string Path {  get; set; } = "/";
+    public string Path {  get; private set; } = "/";
     public long Size {  get; set; } = 0;
     public int? CurrentDirectoryId { get; set; }
     

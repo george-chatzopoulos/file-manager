@@ -7,10 +7,10 @@ public sealed class FileItem
     public int Id { get; set; }
     public string Name { get; private set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
-    public string Path {  get; private set; } = "/";
-    public long Size {  get; set; } = 0;
+    public string Path { get; private set; } = "/";
+    public long Size { get; set; } = 0;
     public int? CurrentDirectoryId { get; set; }
-    
+
 
     public FileItem(string name, string path = "/", int? currentDirectoryId = null)
     {
@@ -32,7 +32,7 @@ public sealed class FileItem
     {
         if (!Models.IsPathValid(path))
             throw new ArgumentException($"Invalid path \n Expectation: {path}{Name}", nameof(path));
-            
+
         Path = path + Name;
     }
 }

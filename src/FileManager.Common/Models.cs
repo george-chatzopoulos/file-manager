@@ -4,7 +4,7 @@ namespace FileManager.Common;
 
 public static partial class Models
 {
-    [GeneratedRegex(@"^[a-zA-Z][a-zA-Z0-9-_\.]*$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"^[a-zA-Z][a-zA-Z0-9-_\.]*\/$", RegexOptions.IgnoreCase)]
     private static partial Regex DirectoryNamePattern();
 
     [GeneratedRegex(@"^[\w\s-]+(\.[\w\.]+[\w]+)$", RegexOptions.IgnoreCase)]

@@ -11,7 +11,7 @@ public static partial class Models
     private static partial Regex FileNamePattern();
 
     [GeneratedRegex(@"^(\/[a-zA-Z][a-zA-Z0-9-_\.]*)+\/$", RegexOptions.IgnoreCase)]
-    private static partial Regex IsPathValid();
+    private static partial Regex PathPattern();
 
     public static bool IsDirectoryNameValid(string name)
     {
@@ -36,7 +36,7 @@ public static partial class Models
 
     public static bool IsPathValid(string path)
     {
-        bool hasPathValidPattern = IsPathValid().IsMatch(path);
+        bool hasPathValidPattern = PathPattern().IsMatch(path);
 
         return IsPathRoot(path) || hasPathValidPattern;
     }

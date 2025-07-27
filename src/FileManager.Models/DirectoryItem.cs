@@ -10,6 +10,7 @@ public sealed class DirectoryItem
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Path { get; private set; } = "/";
     private Dictionary<string, FileItem> _files = [];
 
     public DirectoryItem(string name, Dictionary<string, FileItem>? files = null)

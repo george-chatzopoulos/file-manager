@@ -31,7 +31,7 @@ public sealed class FileItem
     public void SetPath(string path)
     {
         if (!Models.IsPathValid(path))
-            throw new ArgumentException($"Invalid path \n Expectation: {path}{Name}", nameof(path));
+            throw new ArgumentException($"Invalid path", nameof(path));
 
         Path = path + Name;
     }

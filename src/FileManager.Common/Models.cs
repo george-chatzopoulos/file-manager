@@ -10,7 +10,7 @@ public static partial class Models
     [GeneratedRegex(@"^[\w\s-]+(\.[\w\.]+[\w]+)$", RegexOptions.IgnoreCase)]
     private static partial Regex FileNamePattern();
 
-    [GeneratedRegex(@"^(\/\w)+\/$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"^(\/\w+)+\/$", RegexOptions.IgnoreCase)]
     private static partial Regex IsPathValid();
 
     public static bool IsDirectoryNameValid(string name)

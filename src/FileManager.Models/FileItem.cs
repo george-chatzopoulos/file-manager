@@ -9,6 +9,8 @@ public sealed class FileItem
     public string Extension { get; set; } = string.Empty;
     public string Path { get; private set; } = "/";
     public long Size { get; set; } = 0;
+    public DateTime CreatedAt { get; private set; }
+    public DateTime LastModifiedAt { get; set; }
     public int? CurrentDirectoryId { get; set; }
 
 
@@ -16,6 +18,8 @@ public sealed class FileItem
     {
         SetName(name);
         SetPath(path);
+        CreatedAt = DateTime.Now;
+        LastModifiedAt = DateTime.Now;
         CurrentDirectoryId = currentDirectoryId;
     }
 
@@ -26,6 +30,7 @@ public sealed class FileItem
 
         Name = name;
         Extension = System.IO.Path.GetExtension(name);
+        LastModifiedAt = DateTime.Now;
     }
 
     public void SetPath(string path)
@@ -34,5 +39,6 @@ public sealed class FileItem
             throw new ArgumentException($"Invalid path", nameof(path));
 
         Path = path + Name;
+        LastModifiedAt = DateTime.Now;
     }
 }

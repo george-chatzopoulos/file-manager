@@ -40,4 +40,9 @@ public static partial class Models
 
         return IsPathRoot(path) || hasPathValidPattern;
     }
+
+    public static bool IsThereARootDirectory()
+    {
+        var root = async 
+    }
 }

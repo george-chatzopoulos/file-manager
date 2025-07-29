@@ -11,10 +11,10 @@ public sealed class FileItem
     public long Size { get; set; } = 0;
     public DateTime CreatedAt { get; private set; }
     public DateTime LastModifiedAt { get; set; }
-    public int? CurrentDirectoryId { get; set; }
+    public int CurrentDirectoryId { get; set; }
 
-
-    public FileItem(string name, string path = "/", int? currentDirectoryId = null)
+    // For now it assumes that there exists a root directory
+    public FileItem(string name, string path = "/", int currentDirectoryId = 1)
     {
         SetName(name);
         SetPath(path);

@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using System.Linq;
+
+using Microsoft.EntityFrameworkCore;
+using FileManager.Data;
+
+using var db = new Db.FileManagerDbContext();

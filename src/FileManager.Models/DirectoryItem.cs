@@ -12,8 +12,10 @@ public sealed class DirectoryItem
     public string Path { get; private set; } = "/";
     public DateTime CreatedAt { get; private set; }
     public DateTime LastModifiedAt { get; set; }
-    public List<FileItem> FileItems { get; set; } = [];
-    public List<DirectoryItem> DirectoryItems { get; set; } = [];
+    public int? ParentDirectoryId { get; set; }
+    public DirectoryItem? ParentDirectory { get; set; }
+    public List<FileItem> Files { get; set; } = [];
+    public List<DirectoryItem> SubDirectories { get; set; } = [];
 
     public DirectoryItem(string name, string path = "/")
     {

@@ -11,16 +11,16 @@ public sealed class FileItem
     public long Size { get; set; } = 0;
     public DateTime CreatedAt { get; private set; }
     public DateTime LastModifiedAt { get; set; }
-    public int CurrentDirectoryId { get; set; }
+    public int DirectoryId { get; set; }
 
     // For now it assumes that there exists a root directory
-    public FileItem(string name, string path = "/", int currentDirectoryId = 1)
+    public FileItem(string name, string path = "/", int directoryId = 1)
     {
         SetName(name);
         SetPath(path);
         CreatedAt = DateTime.Now;
         LastModifiedAt = DateTime.Now;
-        CurrentDirectoryId = currentDirectoryId;
+        DirectoryId = directoryId;
     }
 
     public void SetName(string name)

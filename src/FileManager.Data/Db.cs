@@ -12,7 +12,7 @@ public class Db
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "file-manager.db");
+            DbPath = Path.Join(path, "file-manager.db");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

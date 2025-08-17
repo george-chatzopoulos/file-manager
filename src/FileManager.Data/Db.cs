@@ -2,20 +2,20 @@
 
 namespace FileManager.Data;
 
+using FileManager.Models;
+
 public class Db
 {
     public class FileManagerDbContext : DbContext
     {
-        public string DbPath { get; }
+        public DbSet<FileItem> FileItems { get; set; }
+        public DbSet<DirectoryItem> DirectoryItems { get; set; }
 
-        public FileManagerDbContext()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            DbPath = Path.Join(path, "file-manager.db");
+            modelBuilder.Entity<DirectoryItem>()
+                .HasMany(d => d.SubDirectories)
+                .WithOne(f => f.ParentDirectory);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={DbPath}");
     }
 }

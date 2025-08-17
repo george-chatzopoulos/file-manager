@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FileManager.Models\FileManager.Models.csproj" />
+  </ItemGroup>
+
 </Project>

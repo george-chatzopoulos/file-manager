@@ -12,6 +12,7 @@ public sealed class FileItem
     public DateTime CreatedAt { get; private set; }
     public DateTime LastModifiedAt { get; set; }
     public int DirectoryId { get; set; }
+    public DirectoryItem? Directory {  get; set; }
 
     // For now it assumes that there exists a root directory
     public FileItem(string name, string path = "/", int directoryId = 1)
